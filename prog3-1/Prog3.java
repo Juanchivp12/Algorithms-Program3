@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Prog3 {
 
@@ -40,6 +41,8 @@ public class Prog3 {
         int rightSize = right - mid;
         MyObj[] leftHalfArray = new MyObj[leftSize];
         MyObj[] rightHalfArray = new MyObj[rightSize];
+//        MyObj[] leftHalfArray = Arrays.copyOfRange(arr, left+1, leftSize);
+//        MyObj[] rightHalfArray = Arrays.copyOfRange(arr, mid+1, rightSize);
 
         // Copy elements into left and right halves
         for (int i = 0; i < leftSize; i++) {
