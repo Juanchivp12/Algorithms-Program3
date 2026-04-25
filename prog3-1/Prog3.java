@@ -16,13 +16,16 @@ public class Prog3 {
             return 0;
         }
 
+        // Inversion count
         int count = 0;
+
+        // Find mid index
         int mid = (left + right) / 2;
 
         // Recursive calls
-        count += Recur(arr, left, mid);
-        count += Recur(arr, mid+1, right);
-        count += merge(arr, left, mid, right);
+        count += Recur(arr, left, mid); // merge sort call for left side
+        count += Recur(arr, mid+1, right); // merge sort call for right size
+        count += merge(arr, left, mid, right); // merge call to merge the two sorted halves
 
         return count;
     }
@@ -37,12 +40,11 @@ public class Prog3 {
      */
     private static int merge(MyObj[] arr, int left, int mid, int right) {
         int count = 0;
+        // Find the size of the left and right arrays
         int leftSize = mid - left + 1;
         int rightSize = right - mid;
-        MyObj[] leftHalfArray = new MyObj[leftSize];
-        MyObj[] rightHalfArray = new MyObj[rightSize];
-//        MyObj[] leftHalfArray = Arrays.copyOfRange(arr, left+1, leftSize);
-//        MyObj[] rightHalfArray = Arrays.copyOfRange(arr, mid+1, rightSize);
+        MyObj[] leftHalfArray = new MyObj[leftSize]; // Left array
+        MyObj[] rightHalfArray = new MyObj[rightSize]; // right array
 
         // Copy elements into left and right halves
         for (int i = 0; i < leftSize; i++) {
@@ -59,7 +61,7 @@ public class Prog3 {
         while (i < leftSize && j < rightSize) {
             if (leftHalfArray[i].lessThan(rightHalfArray[j])) {
                 arr[k] = leftHalfArray[i++];
-                count += rightSize - j;
+                count += rightSize - j; // if less, then add not only this inversion but the rest on that half since they are all greater
             } else {
                 arr[k] = rightHalfArray[j++];
             }
@@ -82,17 +84,6 @@ public class Prog3 {
      * @return number of inversions
      */
     public static int Prog3(MyObj[] arr) {
-        // Test for correctness
-        int count = 0;
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[i].lessThan(arr[j])) {
-                    count++;
-                }
-            }
-        }
-        System.out.println("\nResult: " + count);
-
         // Preprocessing code here
         Prog3 prog3 = new Prog3();
 
